@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js-basic</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="">
+	<style>
+
+		html{
+			background-color: lightblue;
+		}
+
+		.newHeader{
+			color: red;
+			font-weight: 300;
+			font-family: monospace;
+		}
+
+		.blue{
+			background-color: blue;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="wrapper"></div>
+
+
+	<script type="text/javascript">
+		
+		var myArray = [
+			["hello", 30], 
+			["goodbye", 73], 
+			["class", 93], 
+			["random words", 130]
+		];
+
+
+
+		for (var i = 0; i < myArray.length; i++) {
+			var element = document.createElement("div")
+			element.className = "newHeader"
+
+
+		var style = ""
+
+		if (typeof myArray[i][1] == "number") {
+
+				style = 'style="font-size: ' + myArray[i][1] + 'px;"'
+
+
+			}else{
+
+				style = 'class="' + myArray[i][1] + 'px;"'
+
+			}
+
+			element.innerHTML = `
+
+			<h1 class="${myArray[i][1]}">${myArray[i][0]}</h1>
+
+			`
+
+			document.getElementById("wrapper").appendChild(element)
+
+		}
+
+
+
+
+
+
+		// var element = document.createElement("h1");
+		// element.className = "newHeader";
+
+
+		// //var textNode = document.createTextNode("some text");
+		// //element.appendChild(textNode);
+
+		// //element.innerHTML = "some text"
+
+		// var myVar = "hello"
+		// var mySecondVar = "goodbye"
+
+		// element.innerHTML = `
+
+		// <h1>${myVar}</h1>
+		// <h2>${mySecondVar + " " + myVar} </h2>
+
+		// `
+
+
+		// document.getElementById("wrapper").appendChild(element)
+
+		// console.log(element)
+
+
+
+
+		//strings:
+		//"this can be anything"
+		//'single quotes'
+		//'this is "a" string'
+		//'this is \'a\' string'
+		// "aren&rsquo;t"
+		
+		//number:
+		//200 2123 ... 
+		
+		//boolean:
+		//true false
+
+		//array:
+		//["any", "number", "of", "informaion", "types", "an", "array"]
+		//[1,2,3,4,5,6]
+		//[true, false, true, false]
+		//["string", 1, true, ["meta", "array"]]
+		//[true, false, true, false][0] < get the specific indexed value
+		//[true, false, true, false].length < output the length of the array : 4
+
+
+		// var myVariable = ["an", "array"];
+
+		// myVariable = "web Advanced";
+		// console.log(myVariable);
+
+		// myVariable = "javascript";	
+		// console.log(myVariable, "another thing", 2);
+
+
+		//less than <
+		//greater than >
+
+		//less than or equal to <=
+		//greater than or equal to >=
+
+		// 1 < 2
+		// //true
+
+		// 2 <= 1
+		// //false
+
+		// 1 <= 1
+		// // true 
+
+		// var myVariable = 2;
+		// var mySecondVariable = 10;
+
+		// myVariable > mySecondVariable
+		// //false
+
+		// == // data type-converting comparison
+
+		// 2 == 2 // true
+
+		// 3 == 2 // false	
+
+		// "hi" == "hi" // true
+
+		// "2" == 2 // true
+
+
+		// === // strict comparison
+
+		// "2" === 2 // false
+
+		// 2 === 2 // true
+
+		// "hi" === "hi" //true
+
+
+		// != // not equal (type-converting comparison)
+
+		// 2 != "2" //false
+
+		// 2 != 2 // false
+
+		// 2 != 3 // true
+		
+		// !== // strict comparison
+
+		// 2 !== "2" // true
+
+		// 2 !== 2 // false
+
+		// 2 !== 3 // true
+
+
+		// if (true) {
+		// 	// do something
+
+		// 	console.log("hello!")
+		// }
+
+		// if (false) {
+		// 	// do something else
+		// }
+
+		// if (true) {
+		// 	console.log("hello!")
+
+		// }else{
+		// 	console.log("goodbye!")
+		// }
+
+		// if(true){
+		// 	// do something
+		// 	console.log("hello!")
+		// }else if(false) {
+		// 	// do something
+		// 	console.log("goodbye!")
+
+		// }else{
+		// 	// do something else
+		// 	console.log("greetings!")
+		// }
+
+
+		// if(1 < 0){
+		// 	// do something
+		// 	console.log("hello!")
+		// }else{
+		// 	// do something else
+		// 	console.log("greetings!")
+		// }
+
+
+
+		// var myVar = 3;
+
+		// for (var i = 0; i < 20; i++) {
+			
+		// 	var result = (6 * i) + myVar;
+
+		// 	myVar = myVar + 2;
+
+		// 	console.log(i, result, myVar)
+		// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
