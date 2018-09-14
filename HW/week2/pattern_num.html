@@ -214,12 +214,19 @@
 
 		];
 
-		for (var i = 0; i < myArray.length; i++) {
+
+		var counter = 0;
+
+
+		for (var i = 0; i < 500; i++) {
+
+		//for loop to go 50 times
+		// when I has reached the length of myArray, I want i to start back to 0.
 
 			var element = document.createElement("div")
 			element.className = "box"
 
-			var arrayValue = myArray[i];
+			var arrayValue = myArray[counter];
 			var arrayValueOne = arrayValue[0];
 			var arrayValueTwo = arrayValue[1];
 			var arrayValueThree = arrayValue[2];
@@ -254,7 +261,14 @@
 			
 			document.getElementById("wrapper").appendChild(element)
 
+			counter++
+
+			if (counter >= myArray.length) {
+				counter = 0;
+			}
+
 		}
+
 
 
 	</script>
