@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SE JUNG HWANG</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+</head>
+<style>
+html, body{
+		background-color: #001933;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		color: yellow;
+		font-family: futura;
+		overflow: scroll;
+		flex-direction: column;
+}
+/*canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111a22;
+}*/
+h1{
+	font-size: 3em;
+	margin-bottom: 3%;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: yellow;
+}
+
+button{
+	border-style: none;
+	font-family: futura;
+	background-color: transparent;
+	color: yellow;
+	font-size: 1em;
+}
+
+a:hover button{
+	color: #001933;
+	background: yellow;
+	color: #001933;
+}
+/*li{
+	padding: .5em 0 .5em 0;
+}*/
+.project {
+    width: 22%;
+    height: 80%;
+    float: left; 
+    margin-right: 3%;
+    flex: 1;
+}
+
+.col-2 {
+    width: 73%;
+    height: 78%;
+    float: left; 
+}
+.item{
+	background-color: yellow;
+	width: 80%;
+	height: 50%;
+}
+
+#moving_text{
+	
+ position: absolute;
+ width: 100vw;
+ height: 5vh;
+ margin: 0;
+ color: yellow;
+ font-family: futura;
+ text-align: center;
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ -moz-animation: scroll-left 10s linear infinite;
+ -webkit-animation: scroll-left 10s linear infinite;
+ animation: scroll-left 10s linear infinite;
+}
+
+@-moz-keyframes moving_text {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes moving_text {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes moving_text {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Browser bug fix */
+ -webkit-transform: translateX(100%); /* Browser bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Browser bug fix */
+ -webkit-transform: translateX(-100%); /* Browser bug fix */
+ transform: translateX(-100%); 
+
+	}
+@media (max-width: 600px) {
+    div{
+        width: 100%;
+     
+    }
+
+}
+</style>
+
+<body>
+
+	<div style="position: sticky;"><h1>SEJUNG HWANG</h1></div>
+
+		<div class="project"> 
+			<a><button class="collapsible"> PROJECT1 </button></a>
+		</div>
+		<div class="project"> 
+			<a><button class="collapsible"> PROJECT2 </button></a>
+		</div>
+		<div class="project"> 
+			<a><button class="collapsible"> PROJECT3 </button></a>
+		</div>
+		<div class="project"> 
+			<a><button class="collapsible"> PROJECT4 </button></a>
+		</div>
+		
+	</div>
+
+	<div class="col-2">
+
+		<div class="item" id="div1" style="display: none;">screenshot/ title/ date</div>
+		<div class="item" id="div2" style="display: none;"></div>
+		<div class="item" id="div3" style="display: none;"></div>
+		<div class="item" id="div4" style="display: none;"></div>
+		<div class="item" id="div5" style="display: none;"></div>
+
+	</div>
+
+
+	<div id="moving_text">FALL 2018 | Web Advanced: Javascript | Parsons the New School</div>
+
+<script>
+
+$(function() {
+    $('button').click(function() {
+        $('div1').toggle(1000);
+    });
+    $('#showdiv2').click(function() {
+        $('div[id^=div]').hide();
+        $('#div2').show();
+    });
+
+    $('#showdiv3').click(function() {
+        $('div[id^=div]').hide();
+        $('#div3').show();
+    });
+
+    $('#showdiv4').click(function() {
+        $('div[id^=div]').hide();
+        $('#div4').show();
+    });
+
+    $('#showdiv5').click(function() {
+        $('div[id^=div]').hide();
+        $('#div5').show();
+    });
+
+})
+
+</script>	
+
+</body>
+</html>

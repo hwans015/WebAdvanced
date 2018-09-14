@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		
+		html{
+			background-color: lightblue;
+		}
+
+		.newHeader{
+			color: green;
+			font-weight: 300;
+			font-family: monospace;
+		}
+
+		.blue{
+			background-color: blue;
+		}
+
+
+	</style>
+
+
+</head>
+<body>
+
+	<div id="wrapper"></div>
+
+
+	<script type="text/javascript">
+		
+		var myArray = [
+			["hello", 16],
+			["goodbye", "blue"],
+			["class", 50],
+			["random words", 100],
+		];
+
+
+
+		for (var i = 0; i < myArray.length; i++) {
+
+			var element = document.createElement("div")
+			element.className = "newHeader"
+
+			var arrayValue = myArray[i];
+			var arrayValueOne = arrayValue[1];
+
+
+			var style = "";
+
+			if (typeof arrayValueOne == "number" ) {
+				style = 'style="font-size: ' + arrayValueOne + 'px;"'
+			}else{
+				style = 'class="' + arrayValueOne + '"'
+			}
+
+			element.innerHTML = `
+
+				<h1 ${style} >${arrayValue[0]}</h1>
+
+			`				
+			
+			document.getElementById("wrapper").appendChild(element)
+
+		}
+
+
+	</script>
+</body>
+</html>

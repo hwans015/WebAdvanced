@@ -32,7 +32,7 @@
 		
 		var myArray = [
 			["hello", 30], 
-			["goodbye", 73], 
+			["goodbye", "blue"], 
 			["class", 93], 
 			["random words", 130]
 		];
@@ -43,29 +43,48 @@
 			var element = document.createElement("div")
 			element.className = "newHeader"
 
+		var arrayValue = myArray[i];
+		var arrayValueOne = arrayValue[1];
 
 		var style = ""
 
-		if (typeof myArray[i][1] == "number") {
-
-				style = 'style="font-size: ' + myArray[i][1] + 'px;"'
 
 
+		if (typeof arrayValueOne == "number" ) {
+				style = 'style="font-size: ' + arrayValueOne + 'px;"'
 			}else{
+				style = 'class="' + arrayValueOne + '"'			}
 
-				style = 'class="' + myArray[i][1] + 'px;"'
+				element.innerHTML = `
 
-			}
+					<h1 ${style} >${arrayValue[0]}</h1>
 
-			element.innerHTML = `
-
-			<h1 class="${myArray[i][1]}">${myArray[i][0]}</h1>
-
-			`
-
+				`				
+			
 			document.getElementById("wrapper").appendChild(element)
 
 		}
+
+		// if (typeof myArray[i][1] == "number") {
+
+		// 		style = 'style="font-size: ' + myArray[i][1] + 'px;"'
+
+
+		// 	}else{
+
+		// 		style = 'class="' + myArray[i][1] + 'px;"'
+
+		// 	}
+
+		// 	element.innerHTML = `
+
+		// 	<h1 class="${myArray[i][1]}">${myArray[i][0]}</h1>
+
+		// 	`
+
+		// 	document.getElementById("wrapper").appendChild(element)
+
+		// }
 
 
 

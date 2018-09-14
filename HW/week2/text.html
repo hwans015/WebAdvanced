@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  html,body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  div{
+    height: 100vh;
+    word-wrap: break-word;
+  }
+</style>
+</head>
+<body>
+  <div>
+    <p id="result"></p>
+  </div>
+<script>
+
+var myArray = [
+  ["A","#f75d59",13],
+  ["B","#89c35c",9],
+  ["C","#1569c7","seoul"],
+  ["D","#C25283",30],
+  ["E","red",28],
+  ["F","blue",50],
+  ["G","green",72],
+  ["H","#571b7e",5]
+  ["I","#f75d59","newyork"],
+  ["J","#89c35c","beijing"],
+  ["K","#1569c7","tokyo"],
+  ["L","#C25283",35],
+  ["M","red","london"],
+  ["N","blue","paris"],
+  ["O","green","washingtonDC"],
+  ["P","#571b7e","busan"]
+];
+
+for (var i = 0; i < myArray.length; i++) {
+  var element = document.createElement("div")
+
+  var arrayValue = myArray[i];
+  var arrayValueOne = myArray[1];
+  var arrayValueTwo = myArray[2];
+
+  var style = "";
+
+  if (typeof arrayValueTwo == "number") {
+    style = 'style="font-size: ' + arrayValueTwo + 'px;"'
+  }
+
+  if (typeof arrayValueTwo == "string") {
+    style = 'style="color: ' + arrayValueOne + ' ";' 
+  }
+
+  element.innerHTML = `
+
+        <h1 ${style} >${myArray[0]}</h1>
+
+      `       
+      
+      document.getElementById("result").appendChild(element)
+
+}
+
+var d = document.createElement("div")
+
+var string = "";
+
+var counter = 0;
+while(counter < 500){
+  var rand= Math.random();
+  if(rand < 0.5){
+    string += arrayValueTwo;
+  }
+  else{
+    string += "X";
+  }
+  counter = counter +1;
+
+  document.getElementById("result").innerHTML= string;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SEJUNG HWANG</title>
+	<style>
+		@font-face {
+		font-family: 'Atlas Grotesk Web';
+		src: url('AtlasGrotesk-Regular-Web.eot');
+		src: url('AtlasGrotesk-Regular-Web.eot?#iefix') format('embedded-opentype'),
+		url('AtlasGrotesk-Regular-Web.woff2') format('woff2'),
+		url('AtlasGrotesk-Regular-Web.woff') format('woff');
+		font-weight: 400;
+		font-style: normal;
+		font-stretch: normal;
+}
+
+
+*,
+*:after, 
+*:before,
+
+
+@import "compass/css3";
+
+.col-2 {
+   margin: 50px;   
+   dt, dd {
+      padding: 10px;
+      border: 2px solid black;
+      border-bottom: 2px solid black; 
+      &:last-of-type {
+        border-bottom: 1px solid black; 
+      }
+      
+      a {
+        display: block;
+        color: black;
+        font-weight: bold;
+        border-bottom: 1px solid black; 
+
+      }
+   }
+
+
+
+  dd {
+     border-top: 0; 
+     font-size: 12px;
+     &:last-of-type {
+       border-top: 1px solid white;
+       position: relative;
+       top: -1px;
+     }
+  }
+}
+a {
+  text-decoration: underline;
+    text-decoration-skip: ink;
+  -webkit-text-decoration-skip: ink;  
+    color: black;
+}
+
+
+
+i { position:absolute;
+  right: 20px;
+  top:14px;
+    -webkit-transition:all 300ms ease-in 0s;
+    -moz-transition: all 300ms ease-in 0s;
+    -o-transition: all 300ms ease-in 0s;
+  transition: all 300ms ease-in 0s;}
+
+.ui-state-active i {
+    color: #ACD4CE;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+a {
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+    color: black;
+}
+
+
+a:hover {
+
+  color: silver;
+}
+
+
+* {
+	margin: 0;
+
+}
+
+body {
+	padding: 20px;
+	margin-top: 0px;
+	font-family: 'Atlas Grotesk Web';
+  	font-weight: 400;
+  	font-style: normal;
+  	font-stretch: normal;
+  	font-size: 2vw;
+    -webkit-column-break-inside:avoid;
+  background-color: #f1f2ec;
+
+}
+
+
+*::selection {
+	color: silver;
+}
+
+p {
+	font-family: 'Atlas Grotesk Web';
+	font-size: 2vw;
+	line-height: 2.3vw;
+	margin-bottom: 20px;
+	font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  }
+
+
+  dl {
+  font-family: 'Atlas Grotesk Web';
+  font-size: 3.5vw;
+  line-height: 3.8vw;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+    }
+
+
+    dl a {
+      color: black;
+        text-decoration: underline;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+    }
+
+
+dt {
+  border-bottom: 2px solid black;
+
+}
+
+
+
+
+p a {
+	color: black
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+}
+
+// a:visited {
+// 	color: black;
+  text-decoration: underline;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+// }
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+@supports (display: grid) {
+  .table {
+    display: grid;
+    grid-gap: 50px;
+    gap: 50px;
+  }
+
+.nav {
+    columns: 4;
+    padding-bottom: 40px;
+    font-size: 2vw;
+}
+
+
+.bracket {
+	color:black;
+	columns: 2;
+	font-family: 'Atlas Grotesk Web';
+	font-size: 3.5vw;
+	line-height: 3.8vw;
+	font-weight: 400;
+  	font-style: normal;
+  	font-stretch: normal;
+}
+
+img {
+  width: 30%;
+  margin-top: 20px;
+  mix-blend-mode: multiply;
+  display:block; margin: 0 auto
+}
+
+
+
+
+.col-2 H2 A{
+    padding: 6px 0px;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 5.5vw;
+    /* background: #000; */
+    border-bottom: 5px solid black;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0;
+    color: black;
+}
+
+
+.col-2 H2{
+  margin: 0;
+
+}
+.col-2 P {
+  margin: 10px 0;
+}
+.col-2
+{
+  margin-top: 34px;
+}
+.inner{
+/*border:thin dotted #ccc; */
+}
+.col-2 + H1
+{
+  margin-top: 64px;
+}
+.col-2 H2 A:before
+{
+  content: '+ ';
+  margin-right: 1vw;
+  padding-right: 2vw;
+  font-family: 'Atlas Grotesk Web';
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-size: 5.5vw;
+  width: 5px;
+  display: inline-block;
+}
+.col-2 H2 A.selected:before
+{
+  content: '-';
+  padding-right: 2vw;
+  margin-right: 1vw;
+  font-family: 'Atlas Grotesk Web';
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  font-size: 5.5vw;
+  width: 5px;
+  display: inline-block;
+}
+.col-2 .inner
+{
+  padding: 10px 0px;
+  background: ;
+}
+
+.info2 {
+  padding: 10px 10px;
+  background: ;
+  columns: 1;
+  width: 50%;
+  float: left;
+}
+
+.info3 {
+  padding: 10px 10px;
+  background: ;
+  columns: 1;
+}
+
+
+A.selected
+{
+  /*color: black !important; */
+}
+
+
+@media only screen and (max-width: 1150px) {
+
+.col-2 H2 A {
+    padding: 6px 0px;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    /* background: #000; */
+    border-bottom: 3px solid black;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0;
+    color: black;
+}
+
+
+.col-2 H2 A:before {
+    content: '+ ';
+    margin-right: 2vw;
+    padding-right: 2vw;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    width: 5px;
+    display: inline-block;
+}
+
+
+.col-2 H2 A.selected:before {
+    content: '-';
+    padding-right: 2vw;
+    margin-right: 2vw;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    width: 5px;
+    display: inline-block;
+}
+
+p {
+    font-family: 'Atlas Grotesk Web';
+    font-size: 4vw;
+    line-height: 4.3vw;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+.col-2 .inner {
+    padding: 0;
+    background: ;
+    columns: 1 !important;
+}
+
+.nav {
+    columns: 4;
+    padding-bottom: 40px;
+    font-size: 4vw;
+    line-height: 4.3vw;
+}
+
+.info2 {
+    padding: 10px 0px;
+    background: ;
+    columns: 1;
+    font-size: 4vw;
+
+}
+
+.info3 {
+    padding: 10px 0px;
+    background: ;
+    columns: 1;
+    font-size: 4vw;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+
+.col-2 H2 A {
+    padding: 6px 0px;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    /* background: #000; */
+    border-bottom: 3px solid black;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0;
+    color: black;
+}
+
+
+.col-2 H2 A:before {
+    content: '+ ';
+    margin-right: 2vw;
+    padding-right: 2vw;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    width: 5px;
+    display: inline-block;
+}
+
+
+.col-2 H2 A.selected:before {
+    content: '-';
+    padding-right: 2vw;
+    margin-right: 2vw;
+    font-family: 'Atlas Grotesk Web';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-size: 7.5vw;
+    width: 5px;
+    display: inline-block;
+}
+
+p {
+    font-family: 'Atlas Grotesk Web';
+    font-size: 4vw;
+    line-height: 4.3vw;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+.col-2 .inner {
+    padding: 0;
+    background: ;
+}
+
+.nav {
+    columns: 4;
+    padding-bottom: 40px;
+    font-size: 4vw;
+    line-height: 4.3vw;
+}
+
+.info2 {
+    padding: 10px 0px;
+    background: ;
+    columns: 2;
+    font-size: 4vw;
+
+}
+
+.info3 {
+    padding: 10px 0px;
+    background: ;
+    columns: 1;
+    font-size: 4vw;
+
+}
+
+}
+
+
+	</style>
+</head>
+<body>
+
+<div>
+	
+	<div class="col-1">
+		
+	</div>
+
+	<div class="col-2">
+		<h1>
+		 ABOUT
+		</h1>
+		<div class="inner" style="display: none;">
+			<p> TITLE, DATE, Screenshout, URL </p>	
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>
