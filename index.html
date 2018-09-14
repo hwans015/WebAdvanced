@@ -77,9 +77,8 @@
 	.screen{
 		width: 75%;
 		height: 70%;
-		background-color: #001933;
 		display: inline-block;
-		padding-top: 5%;
+		padding: 0;
 		margin-top: 3%;
 	}
 
@@ -87,6 +86,21 @@
 		height: 5vh;
 		padding: 2vh;
 	}
+
+	img{
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+@media (max-width: 600px) {
+    .content{
+       	max-height: 45%;
+       	margin-bottom: 5vh;
+    }
+    .project{
+    	max-height: 60%;
+    }
+}	
 </style>
 
 <body>
@@ -95,8 +109,8 @@
 	<div class="project">
 		<a><button id="showdiv1" ">PROJECT 1</button></a>
 		<div class="content" id="div1" style="display: none;">
-			<div class="screen"><a href="url">image</a></div>
-			<p>Title (date)</p>
+			<div class="screen"><a href="HW/week2/pattern_num.html"><img src="HW/week2/pattern.png"></a></div>
+			<p>Pattern: Part1 (09.14.18)</p>
 		</div>
 	</div>
 	<div class="project">
