@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doughnut</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	html{
+		background-color: #ffffff;
+	}
+
+	html,body,div{
+		padding: 0;
+		margin: 0;
+	}
+
+	#make{
+		width: 100vw;
+		height: 20vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	button{
+		width: 30%;
+		height: 70%;
+		background-image: url(logo.png);
+		background-repeat: no-repeat;
+		background-size: 70%; 
+		background-position: center;
+		background-color: transparent;
+		border: none;
+	}
+	button:hover{
+		background-image: url(logo2.png);
+		background-repeat: no-repeat;
+		background-size: 70%; 
+		background-position: center;
+		background-color: transparent;
+	}
+	.container{
+		position: relative;
+		display: inline-block;
+		width: 8.33vw;
+		height: 8.33vw;
+
+
+	}
+
+	.circle{
+		position: absolute;
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: none;
+	}
+	.smcir{
+		position: absolute;
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+
+</style>	
+</head>
+<body>
+	<div id="wrapper">
+		<div id="make"><button></button></div>
+	</div>
+<script type="text/javascript">
+
+
+	var circleDiameter = 7;
+
+	var totalLength = 120;
+
+	for (var i = 0; i < totalLength; i++) {
+		
+		var container = document.createElement("div");
+		container.className = "container";
+		// container.id = "container" + i;
+
+			var circle = "circle" + i;
+
+			var doughcol = "";
+			var chocolate = "rgb(85,35,10)";
+			var glazed = "rgb(255,190,90)";
+			var strawberry = "rgb(255,153,204)"
+
+			var smcirsize = "";
+
+			if (i % 7 == 0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}
+			if(i % 9 == 0){
+				smcirsize = 2;
+				doughcol = strawberry;
+
+			}
+			else if(i % 43 == 0){
+				smcirsize = 0;
+				doughcol = strawberry;
+			}else if(i % 4 ==0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}else{
+				smcirsize = 0;
+				doughcol = chocolate;
+			}
+
+
+		
+			container.innerHTML =  `
+
+				<div style="background-color:${doughcol};width:${circleDiameter}vw; height:${circleDiameter}vw;" class = "circle" id=${circle}"><div class="smcir" style="background-color:white; width:${smcirsize}vw; height:${smcirsize}vw;"></div></div>
+
+			`
+
+
+		document.getElementById("wrapper").appendChild(container)
+
+	}
+	
+		var setColor = function(dotColor, backgroundColor, dotSize, dotSpacing){
+
+	  	var image = 'radial-gradient('+dotColor+' '+dotSize+'px, '+backgroundColor+' 0px)';
+	  	var size = dotSpacing+'px '+dotSpacing+'px';
+	 	document.body.style.backgroundImage = image;
+	 	document.body.style.backgroundSize = size;
+			
+			};
+
+		setColor('rgb(0,165,0)','rgb(255,255,255)','4','40');
+
+
+		//animation
+
+		$(document).ready(function(){
+	    $("button").click(function(){
+	    	$(".circle").show(3400);
+
+	    $("#circle0").delay(600).fadeIn();
+	    $("#circle1").delay(800).fadeIn();
+	    $("#circle2").delay(1000).fadeIn();
+	    $("#circle3").delay(1200).fadeIn();
+	    $("#circle4").delay(1400).fadeIn();
+	    $("#circle5").delay(1600).fadeIn();
+	    $("#circle6").delay(1800).fadeIn();
+	    $("#circle7").delay(2000).fadeIn();
+	    $("#circle8").delay(2200).fadeIn();
+	    $("#circle9").delay(2400).fadeIn();
+	    $("#circle10").delay(2600).fadeIn();
+	    $("#circle11").delay(2800).fadeIn();
+	    $("#circle12").delay(3000).fadeIn();
+	    $("#circle13").delay(2200).fadeIn();
+	    $("#circle14").delay(2400).fadeIn();
+	    $("#circle15").delay(2600).fadeIn();
+	    $("#circle16").delay(2800).fadeIn();
+	    $("#circle17").delay(3000).fadeIn();
+	    $("#circle18").delay(3200).fadeIn();
+	    $("#circle19").delay(3400).fadeIn();
+	    $("#circle20").delay(3600).fadeIn();
+
+	  });
+	});
+	
+
+</script>
+</body>
+</html>
