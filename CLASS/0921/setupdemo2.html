@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<style>
+	html,body{
+		padding: 0;
+		margin: 0;
+		font-size: 15px;
+		text-align: center;
+	}
+	.weather{
+		font-size: 20px;
+		transform: scale(-1, 1);
+		position: absolute;
+		display: block;
+	}
+
+
+</style>	
+</head>
+<body>
+
+	<div id="wrapper"></div>
+
+<script type="text/javascript">
+	
+//setTimeout
+
+	// setTimeout(function(){
+
+	// 	console.log('hello!')
+
+
+
+	// }, 3000);
+
+//Math.random
+	
+	
+
+	// var randomNum = Math.random() * 10;
+
+	// var roundNum = Math.round( randomNum );
+	// 					// ceil - round up
+	// 					// floor - round down
+
+	// var interval = Math.round(Math.random()*10000);
+	var interval = 0;
+	var counter = 0;
+
+
+ 	for (var i = 0; i < 100; i++) {
+ 		setTimeout(function(){
+ 			//console.log("hello", counter)
+
+ 			var weather = document.createElement("div");
+ 			weather.className = "weather";
+
+ 			var snow = "";
+
+ 			for (var s = 0; s < 10; s++) {
+
+ 				// want to compile the snow/rain string
+
+ 				var snowOrRain = Math.ceil(Math.random()*100);
+ 				
+ 				if (snowOrRain <= 33) {
+ 					snow += " ";
+
+ 				}else if (snowOrRain > 33 && snowOrRain <= 66){
+ 					snow += "🚗";
+
+ 				}else if (snowOrRain > 66){
+ 					snow += "🚕";
+ 				}
+
+ 
+
+ 			}
+
+ 			weather.innerHTML = snow;
+
+ 			document.getElementById("wrapper").appendChild(weather);
+
+ 			//자동으로 스크롤다운
+ 			window.scrollTo(0, document.body.scrollHeight);
+
+
+ 		   counter++;
+ 		}, interval);
+
+ 		// interval = Math.round(Math.random()*10000);
+
+ 		interval+= 100;
+ 		// interval = interval + 100
+
+
+ 	}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	
+	*{
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;	
+	}
+
+	body,html, #wrapper{
+		width: 100%;
+	}
+	
+	.testclass{
+		background-color: yellow;
+	}
+
+	.alltestclass{
+		background-color: green;
+	}
+
+	.clicked{
+		font-family: cursive;
+		font-size: 50px;
+	}
+
+	.pattern{
+		display: inline-block;
+		background-color: blue;
+		width: 5vw;
+		height: 5vw;
+		margin: .5vw;
+
+	}
+
+
+
+</style>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+
+	var myFunction = function(input){
+		console.log(input)
+	}
+	
+	$(document).ready(function(){
+
+		myFunction("test!")
+
+		//jQery
+		var myVar = "Greetings!"
+		var color = "#ffffff"
+
+		$("#wrapper, .content").html("<h1>" + myVar + "</h1>");
+
+		$("#wrapper").css({"background-color":"red",
+							"color"		     : color
+						})
+
+		$(".anotherClass").each(function(){
+			$(this).html($(this).index())
+
+			if($(this).index() % 2){
+				$(this).html("hello")
+				$(this).addClass("testclass")
+			}else{
+				$(this).html("goodbye")
+				$(this).addClass("alltestclass")
+			}
+		})
+
+		$(".anotherClass").append("<h2>appended</h2>")
+		$(".anotherClass").prepend("<h3>appended</h3>")
+
+		$(".anotherClass").mouseenter(function(){
+			//mouseenter leave up down move
+			$(this).toggleClass("clicked") //mousemove 하면 addClass -> 생성
+		})
+
+		for (var i = 0; i < 100; i++) {
+			$("body").prepend("<div class='pattern'></div>")
+		}
+
+
+	})
+
+</script>
+</head>
+<body>
+
+	<div id="wrapper" class="aClass"></div>
+
+	<div class ="anotherClass"></div>
+	<div class ="anotherClass"></div>
+	<div class ="anotherClass"></div>
+	<div class ="anotherClass"></div>
+	<div class ="anotherClass"></div>
+
+
+</body>
+</html>

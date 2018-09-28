@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	
+	*{
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;	
+	}
+
+	body,html, #wrapper{
+		width: 100%;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id="wrapper"></div>
+
+	<script type="text/javascript">
+	
+
+		var myVar = 3;
+		var mySecondVar = 4;
+
+		var myFunction = function(number1, number2){
+			// console.log(number1 + number2)
+			var sum = number1 + number2;
+			return sum;
+		}
+			// myFunction(myVar, mySecondVar)
+
+		var thisInstance = myFunction(myVar, mySecondVar);
+		console.log(thisInstance)
+
+		var anotherInstance = myFunction(thisInstance, thisInstance);
+		console.log(anotherInstance)
+
+
+
+		var myArray = [
+			"list",
+			"var",
+			14,
+			44
+		]
+
+		var myObject = {
+			"location" : "central park",
+			"season" : ["spring", "winter", "summer", "fall"],
+			"treeamount" : 100,
+			"pigeons" : 30,
+
+			"extraFunction" : function(input){
+				console.log(input)
+			}
+		};
+
+		console.log(myObject.season[1])
+
+		myObject.treeamount = 1200;
+		console.log(myObject.treeamount)
+
+		myObject.extraFunction("greetings!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
