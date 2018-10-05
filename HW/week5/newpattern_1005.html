@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doughnut</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	html{
+		background-color: #ffffff;
+	}
+
+	body{
+		min-height: 100vh;
+		min-width: 100%;
+	}
+
+	html,body,div{
+		padding: 0;
+		margin: 0;
+	}
+	h1,h2{
+		margin: 0;
+	}
+	#wrapper{
+		padding-left: 5vw;
+	}
+
+	#make{
+		width: 100vw;
+		height: 18vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#dis{
+		width: 100vw;
+		height: 10vh;
+		display: inline-block;
+		text-align: center;
+	}
+
+	#deco{
+		width: 20%;
+		height: 10vh;
+		font-weight: bold;
+		font-family: futura;
+		font-size: 2.5em;
+		margin: 0;
+		padding: 0;
+		float: left;
+	}
+
+	#hour{
+		width: 60%;
+		height: 10vh;
+		font-weight: bold;
+		font-family: futura;
+		font-size: 1em;
+		padding-bottom: 2vh;
+		margin: 0;
+		padding: 0;
+		float: left;
+		align-items: center;
+		
+	}
+
+	#purchase{
+		width: 20%;
+		height: 10vh;
+		font-weight: bold;
+		font-family: futura;
+		font-size: 2em;
+		margin: 0;
+		float: right;
+		padding: 0;
+		padding-top: 1%;
+	}
+	
+
+	button{
+		width: 30%;
+		height: 70%;
+		background-image: url(logo.png);
+		background-repeat: no-repeat;
+		background-size: 70%; 
+		background-position: center;
+		background-color: transparent;
+		border: none;
+	}
+	button:hover{
+		background-image: url(logo2.png);
+		background-repeat: no-repeat;
+		background-size: 70%; 
+		background-position: center;
+		background-color: transparent;
+		border: none;
+	}
+	.container{
+		position: relative;
+		display: inline-block;
+		width: 8.33vw;
+		height: 8.33vw;
+
+
+	}
+
+	.circle{
+		position: relative;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	.smcir{
+		position: absolute;
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.addSP{
+		background-color: red !important;
+	}
+
+
+</style>	
+</head>
+<body>
+	
+		<div id="make"><button></button></div>
+
+		<div id="dis">
+			<div id="deco">+</div>
+			<div id="hour">Store Close in<br><span id="time"></span></div>
+			<div id="purchase">$</div>
+		</div>
+
+		<div id="wrapper">
+		</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+	    setInterval(function () {
+	        minutes = parseInt(timer / 60, 10);
+	        seconds = parseInt(timer % 60, 10);
+
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+	        display.text(minutes + ":" + seconds);
+
+	        if (--timer < 0) {
+	            timer = duration;
+	        }
+	    }, 1000);
+	}
+
+	jQuery(function ($) {
+	    var twentyfourMinutes = 60 * 24,
+	        display = $('#time');
+	    startTimer(twentyfourMinutes, display);
+	});
+
+	var shopping = false;
+	$('#purchase').click(function(){
+		shopping = !shopping
+	})
+
+	var setColor = function(dotColor, backgroundColor, dotSize, dotSpacing){
+
+	  	var image = 'radial-gradient('+dotColor+' '+dotSize+'px, '+backgroundColor+' 0px)';
+	  	var size = dotSpacing+'px '+dotSpacing+'px';
+	 	document.body.style.backgroundImage = image;
+	 	document.body.style.backgroundSize = size;
+			
+			};
+
+		setColor('rgb(0,165,0)','rgb(255,255,255)','4','40');
+
+	var circleDiameter = 7;
+	var interval = 0;
+		counter = 0;
+
+
+	for (var i = 0; i < 121; i++) {
+
+		setTimeout(function(){
+
+		var container = document.createElement("div");
+		container.className = "container";
+		// container.id = "container" + i;
+
+			var circle = "circle" + counter;
+
+			var doughcol = "";
+			var chocolate = "rgb(85,35,10)";
+			var glazed = "rgb(241,209,162)";
+			var strawberry = "rgb(255,176,193)"
+
+			var smcirsize = "";
+
+			if (counter % 7 == 0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}
+			if(counter % 9 == 0){
+				smcirsize = 2;
+				doughcol = strawberry;
+
+			}
+			else if(counter % 43 == 0){
+				smcirsize = 0;
+				doughcol = strawberry;
+			}else if(counter % 4 ==0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}else{
+				smcirsize = 0;
+				doughcol = chocolate;
+
+			}
+
+
+		
+			container.innerHTML =  `
+
+				<div style="background-color:${doughcol};width:${circleDiameter}vw; height:${circleDiameter}vw;" class = "circle" id=${circle}"><div class="smcir" style="background-color:white; width:${smcirsize}vw; height:${smcirsize}vw;"></div></div>
+
+			`
+			if (smcirsize == 0) {
+			 	container.firstElementChild.setAttribute("class","sprinkle circle") 
+			}
+
+			var child = document.getElementsByClassName('circle')[0]
+			// if (child) {
+			// 	child.remove()
+			// }
+  
+
+
+		document.getElementById("wrapper").appendChild(container);
+
+		counter++;
+      
+		
+
+
+	}, interval);
+
+		interval+=100;
+		
+	}
+
+
+setTimeout(function(){
+
+	$(".circle").on('click', function(){
+		if (shopping) {
+			$(this).css('opacity', 0)
+		}
+	})
+
+	$(".sprinkle.circle").on('click', function(){
+			// $(this).toggleClass("addSP")
+			// console.log('hi')"•"
+			// $(".sprin").remove();
+			for (var i = 0; i < 50; i++) {
+
+			var sprin = $("<span/>")
+            console.log('1')
+			var rancol = Math.random() * 360;
+				rancol = Math.floor(rancol);
+
+			var colorstring = "hsl(" +rancol+ ", 100%, 50%)";
+			
+			var width = $(this).width()
+			var left = parseInt(Math.random()* width )-1+"px";
+			var top = parseInt(Math.random()*width)-2+"px";
+			var rotate = "rotate" + "(" +rancol+ "deg" +")";
+
+			sprin.text("|")
+			// sprin.css("position:absolute; color:" + rancol + "; left:"+left+"; top:"+ top +"; ")
+			sprin.css('position', 'absolute');
+			sprin.css('color', colorstring);
+			sprin.css('transform', rotate);
+
+			sprin.css('left', left);
+			sprin.css('top', top);
+			sprin.addClass("sprin")
+
+			$(this).append(sprin)
+				
+			}
+	
+		})
+ },12000)
+		
+
+	
+
+</script>
+</body>
+</html>
