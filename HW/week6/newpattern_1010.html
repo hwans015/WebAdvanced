@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doughnut</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	
+	@font-face {
+    font-family: myFirstFont;
+    src: url(lobster.ttf);
+	}
+
+	html{
+		background-color: #ffffff;
+	}
+
+	body{
+		min-height: 100vh;
+		min-width: 100%;
+		overflow: hidden;
+	}
+
+	html,body,div{
+		padding: 0;
+		margin: 0;
+	}
+
+	h1,h2{
+		margin: 0;
+	}
+
+	#wrapper{
+		padding-left: 4.25vw;
+	}
+
+	#make{
+		width: 100vw;
+		height: 13vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: orange;
+		text-align: center;
+	}
+
+	#dis{
+		width: 100vw;
+		height: 10vh;
+		display: inline-block;
+		text-align: center;
+		justify-content: center;
+	}
+
+	#hour{
+		width: 60%;
+		height: 10vh;
+		font-weight: bold;
+		font-family: myFirstFont;
+		font-size: 3em;
+		padding-bottom: 2vh;
+		margin: 0;
+		padding: 0;
+		float: left;
+		align-items: center;
+		
+	}
+
+	#purchase{
+		/*width: 20%;
+		height: 10vh;*/
+		font-weight: bold;
+		font-family: futura;
+		font-size: 3em;
+		/*margin-left: 39%;
+		padding: 0;*/
+		display: table;
+		margin: 0 auto;
+	}
+	
+	.tooltip{
+	  	font-size: .3em;
+	  	display: block;
+	}
+
+	.tooltiptext{
+		font-size: .15em;
+		display: block;
+		color: orange;
+		background-color: green;
+		margin-top: 8%;
+		z-index: 5;
+		font-family: myFirstFont;
+	}
+
+	.tooltiptext:hover{
+		color: green;
+		background-color: orange;
+	}
+
+	
+	.container{
+		position: relative;
+		display: inline-block;
+		width: 7.69vw;
+		height: 7.69vw;
+	}
+
+	.circle{
+		position: relative;
+		border-radius: 50%;
+		overflow: hidden;
+		transition: 0.2s;
+	}
+
+	.smcir{
+		position: absolute;
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 5;
+	}
+
+	.addSP{
+		background-color: red !important;
+	}
+
+	.indiprice{
+		position: absolute;
+		font-size: 1em;
+		font-family: futura;
+		top: 50%;
+		left: 50%;
+		font-weight: bold;
+		letter-spacing: .05em;
+	}
+
+
+</style>	
+</head>
+<body>
+		<div id="make">
+				<div id="hour">Store will be <span id="time"></span></div>
+		</div>
+
+		<div id="dis">
+			<div id="purchase">$ 0</div>
+		</div>
+
+		<div id="wrapper">
+		</div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+
+	var preparing = true;
+	var done = false;
+
+	function startTimer(duration, display) {
+    	var timer = duration, minutes, seconds;
+	    
+	    var myVar = setInterval(function () {
+	        minutes = parseInt(timer / 60, 10);
+	        seconds = parseInt(timer % 60, 10);
+	        if (preparing == true) {
+				var running = "open";
+	        } else {
+	        	var running = "closed";
+	        }
+	   
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+	        display.text(running + " " + "in " + minutes + ":" + seconds);
+
+	        if (--timer < 0) {
+	        	if (done == false) {
+	        		timer = 60 * 0.1; //running time
+	        		done = true;
+	        	} else{
+	        		$('.circle').css('opacity',0)
+	        		$('#hour').css('opacity',0)
+	        		$('#purchase').css('font-size', "13em")
+	        	
+	        	
+	        		var message = $('<span/>')
+	        		$(message).text("\n" + "you earned today")
+	        		$(message).addClass("tooltip")
+
+	        		var secmessage = $('<div/>')
+	        		$(secmessage).text("Restock")
+	        		$(secmessage).addClass("tooltiptext")
+
+	        		
+	        		$('#purchase').append(message, secmessage)
+	        		clearInterval(myVar);
+
+	        		$('.tooltiptext').click(function()
+	        		{
+	        			window.location.reload(true);
+	        		})
+	        	}
+
+	            preparing = !preparing
+	            shopping = !shopping
+	        }
+
+	    }, 1000);
+	}
+
+	jQuery(function ($) {
+	    var twentyfourMinutes = 60 * 0.1, //prepare time
+	        display = $('#time');
+	    startTimer(twentyfourMinutes, display);
+	});
+
+	var shopping = false;
+
+	var setColor = function(dotColor, backgroundColor, dotSize, dotSpacing){
+
+	  	var image = 'radial-gradient('+dotColor+' '+dotSize+'px, '+backgroundColor+' 0px)';
+	  	var size = dotSpacing+'px '+dotSpacing+'px';
+	 	document.body.style.backgroundImage = image;
+	 	document.body.style.backgroundSize = size;
+			
+			};
+
+		setColor('rgb(0,165,0)','rgb(255,255,255)','4','40');
+
+		var circleDiameter = 7;
+		var interval = 0;
+			counter = 0;
+
+		for (var i = 0; i < 60; i++) {
+
+		setTimeout(function(){
+
+			var container = document.createElement("div");
+			container.className = "container";
+
+			var circle = "circle" + counter;
+
+			var doughcol = "";
+			var chocolate = "rgb(85,35,10)";
+			var glazed = "rgb(241,209,162)";
+			var strawberry = "rgb(255,176,193)"
+
+			var smcirsize = "";
+
+			if (counter % 7 == 0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}
+			if(counter % 9 == 0){
+				smcirsize = 2;
+				doughcol = strawberry;
+
+			}
+			else if(counter % 43 == 0){
+				smcirsize = 0;
+				doughcol = strawberry;
+			}else if(counter % 4 ==0 ){
+				smcirsize = 2;
+				doughcol = glazed;
+			}else{
+				smcirsize = 0;
+				doughcol = chocolate;
+
+			}
+
+			container.innerHTML =  `
+
+				<div style="background-color:${doughcol};width:${circleDiameter}vw; height:${circleDiameter}vw;" class = "circle sprinkle" id=${circle}"><div class="smcir" style="background-color:white; width:${smcirsize}vw; height:${smcirsize}vw;"></div></div>
+
+			`
+			var child = document.getElementsByClassName('circle')[0]
+
+			document.getElementById("wrapper").appendChild(container);
+
+		counter++;
+      
+	}, interval);
+
+	interval+=100;
+		
+	}
+
+
+		var price = 0;
+
+		setTimeout(function(){
+
+			$(".circle").on('click', function(){
+				if (shopping) {
+				$(this).css('opacity', 0)
+				$(this).css('pointer-events', "none")
+
+				var box = $(this).parent(".container")
+				var plus = $("<span/>")
+
+				$(plus).addClass("indiprice")
+
+				if ($(this).hasClass("expensive")){
+					price = price+2;
+					$(plus).text("+ " + 2)
+				}else{
+					price = price+1;
+					$(plus).text("+ " + 1)
+				}
+
+				$(box).append(plus)
+				$(plus).fadeOut("slow")
+
+				$("#purchase").text("$" + price)
+		}
+	})
+
+	$(".sprinkle.circle").on('click', function(){
+
+			if (preparing == true) {
+
+			$(this).addClass("expensive")
+
+			for (var i = 0; i < 50; i++) {
+
+			var sprin = $("<span/>")
+            console.log('1')
+			var rancol = Math.random() * 360;
+				rancol = Math.floor(rancol);
+
+			var colorstring = "hsl(" +rancol+ ", 100%, 50%)";
+			
+			var width = $(this).width()
+			var left = parseInt(Math.random()* width )-1+"px";
+			var top = parseInt(Math.random()*width)-2+"px";
+			var rotate = "rotate" + "(" +rancol+ "deg" +")";
+
+			sprin.text("|")
+
+			sprin.css('position', 'absolute');
+			sprin.css('color', colorstring);
+			sprin.css('transform', rotate);
+
+			sprin.css('left', left);
+			sprin.css('top', top);
+			sprin.addClass("sprin")
+
+			$(this).append(sprin)
+
+			}
+		}
+	})
+ },6000)
+		
+		
+
+</script>
+</body>
+</html>
