@@ -2,17 +2,14 @@
 <html>
 <head>
 	<title>Doughnut</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
 <style>
 	
 	@font-face {
     font-family: myFirstFont;
     src: url(lobster.ttf);
-	}
-
-	@font-face {
-    font-family: mySecFont;
-    src: url(Futura.ttf);
 	}
 
 	html{
@@ -73,7 +70,7 @@
 	#purchase{
 		color: transparent;
 		font-weight: bold;
-		font-family: futura;
+		font-family: 'Roboto', sans-serif;
 		font-size: 3em;
 		display: table;
 		margin: 0 auto;
@@ -132,7 +129,7 @@
 	.indiprice{
 		position: absolute;
 		font-size: 1em;
-		font-family: futura;
+		font-family: 'Roboto', sans-serif;
 		top: 50%;
 		left: 50%;
 		font-weight: bold;
@@ -204,7 +201,7 @@
 
 	        if (--timer < 0) {
 	        	if (done == false) {
-	        		timer = 60 * 0.5; //running time
+	        		timer = 60 * 0.4; //running time
 	        		done = true;
 	  
 	        	} else{
