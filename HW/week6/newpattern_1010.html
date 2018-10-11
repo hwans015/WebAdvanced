@@ -66,13 +66,10 @@
 	}
 
 	#purchase{
-		/*width: 20%;
-		height: 10vh;*/
+		color: transparent;
 		font-weight: bold;
 		font-family: futura;
 		font-size: 3em;
-		/*margin-left: 39%;
-		padding: 0;*/
 		display: table;
 		margin: 0 auto;
 	}
@@ -142,11 +139,11 @@
 </head>
 <body>
 		<div id="make">
-				<div id="hour">Store will be <span id="time"></span></div>
+				<div id="hour"><span id="time"></span></div>
 		</div>
 
 		<div id="dis">
-			<div id="purchase">$ 0</div>
+			<div id="purchase">$</div>
 		</div>
 
 		<div id="wrapper">
@@ -162,6 +159,17 @@
 	var preparing = true;
 	var done = false;
 
+	var setColor = function(dotColor, backgroundColor, dotSize, dotSpacing){
+
+	  	var image = 'radial-gradient('+dotColor+' '+dotSize+'px, '+backgroundColor+' 0px)';
+	  	var size = dotSpacing+'px '+dotSpacing+'px';
+	 	document.body.style.backgroundImage = image;
+	 	document.body.style.backgroundSize = size;
+			
+			};
+
+		setColor('rgb(165,165,165)','rgb(255,255,255)','4','40');
+
 	function startTimer(duration, display) {
     	var timer = duration, minutes, seconds;
 	    
@@ -169,9 +177,19 @@
 	        minutes = parseInt(timer / 60, 10);
 	        seconds = parseInt(timer % 60, 10);
 	        if (preparing == true) {
-				var running = "open";
+				var running = "Store will be open";
+				$("#hour").css('padding-top','13vh')
+				// $("#purchase").text("preparing donuts")
+				// // $("#purchase").css('color','#000000')
+				// // $("#purchase").css('font-style','italic')
+				// // $("#purchase").css('font-size','1em')				
+
 	        } else {
-	        	var running = "closed";
+	        	var running = "Store will be closed";
+	        	$('#purchase').css('color','#000000')
+	        	$("#hour").css('padding-top','0')
+	        	setColor('rgb(0,165,0)','rgb(255,255,255)','4','40');
+	        	
 	        }
 	   
 	        minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -181,8 +199,9 @@
 
 	        if (--timer < 0) {
 	        	if (done == false) {
-	        		timer = 60 * 1; //running time
+	        		timer = 60 * 0.5; //running time
 	        		done = true;
+	  
 	        	} else{
 	        		$('.circle').css('opacity',0)
 	        		$('#hour').css('opacity',0)
@@ -216,23 +235,12 @@
 	}
 
 	jQuery(function ($) {
-	    var twentyfourMinutes = 60 * 0.5, //prepare time
+	    var twentyfourMinutes = 60 * 0.3, //prepare time
 	        display = $('#time');
 	    startTimer(twentyfourMinutes, display);
 	});
 
-	var shopping = false;
-
-	var setColor = function(dotColor, backgroundColor, dotSize, dotSpacing){
-
-	  	var image = 'radial-gradient('+dotColor+' '+dotSize+'px, '+backgroundColor+' 0px)';
-	  	var size = dotSpacing+'px '+dotSpacing+'px';
-	 	document.body.style.backgroundImage = image;
-	 	document.body.style.backgroundSize = size;
-			
-			};
-
-		setColor('rgb(0,165,0)','rgb(255,255,255)','4','40');
+		var shopping = false;
 
 		var circleDiameter = 7;
 		var interval = 0;
@@ -288,7 +296,7 @@
       
 	}, interval);
 
-	interval+=100;
+	interval+=80;
 		
 	}
 
@@ -357,7 +365,7 @@
 			}
 		}
 	})
- },6000)
+ },4800)
 		
 		
 
