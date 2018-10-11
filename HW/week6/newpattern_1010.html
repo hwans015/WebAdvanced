@@ -179,7 +179,7 @@
 
 	        if (--timer < 0) {
 	        	if (done == false) {
-	        		timer = 60 * 0.1; //running time
+	        		timer = 60 * 1; //running time
 	        		done = true;
 	        	} else{
 	        		$('.circle').css('opacity',0)
@@ -214,7 +214,7 @@
 	}
 
 	jQuery(function ($) {
-	    var twentyfourMinutes = 60 * 0.1, //prepare time
+	    var twentyfourMinutes = 60 * 0.5, //prepare time
 	        display = $('#time');
 	    startTimer(twentyfourMinutes, display);
 	});
