@@ -47,21 +47,21 @@ $("body").click(function(){
 
 
 
-if (Cookies.getJSON('foot')){
+if (Cookies.getJSON('star')){
 
-			console.log("there are foot!");
-			foot = Cookies.getJSON('foot');
+			console.log("there are star!");
+			star = Cookies.getJSON('star');
 
-			for (var i = 0; i < foot.length; i++) {
-				$(document.body).append(foot[i]);
+			for (var i = 0; i < star.length; i++) {
+				$(document.body).append(star[i]);
 			}
-			var footsteps = Cookies.getJSON('foot');
-	        console.log(footsteps)
+			var stars = Cookies.getJSON('star');
+	        console.log(stars)
 
 		} else {
-			footsteps = [];
+			stars = [];
 		}
-		
+
 var Cookies2 = Cookies.noConflict();
 	
 	    var counter = 0
@@ -74,17 +74,18 @@ var Cookies2 = Cookies.noConflict();
 		var y = event.y;
 		// console.log (x, y);
 		var div = document.createElement("div");
-		$(div).text("👣")
+		$(div).append("<img src='star.svg' id='star'></img>")
 		div.style.left = x-25 + "px";
 		div.style.top = y-25 + "px";
-		//console.log("<div style='left:"+ (x -25) +"px;top:"+ (y-25) +"px;'>👣</div>")
+		// div.style.width = Math.floor(Math.random() * 10 + 50) + "px";
+		//console.log("<div style='left:"+ (x -25) +"px;top:"+ (y-25) +"px;'></div>")
 		
 
 		if(counter % 15 == 0){
 			document.body.appendChild(div);
-			footsteps.push("<div style='left:"+ (x -25) +"px;top:"+ (y-25) +"px;'>👣</div>")
+			stars.push("<div style='left:"+ (x -25) +"px; top:"+ (y-25) +"px;'><img src='star.svg' id='star'></img></div>")
 		
-			Cookies2.set('foot', footsteps);
+			Cookies2.set('star', stars);
 		}
 		
 
