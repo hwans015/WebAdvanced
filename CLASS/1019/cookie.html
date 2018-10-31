@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Cookie</title>
+
+	<style type="text/css">
+
+		body,html{
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.container{
+			width: 100vw;
+		}
+
+		.circle{
+        display: inline-block;
+        margin: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: red;
+    }       
+
+	</style>
+
+	<!-- Load jquery -->
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+	<!-- Load the javascript cookie library -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+
+</head>
+<body>
+
+	<div class="container"></div>
+
+	<script type="text/javascript">
+		
+		var allCircles = [],
+			circle = "<div class='circle'></div>";
+
+		if (Cookies.getJSON('allCircles')){
+
+			console.log("there are cookies!");
+			allCircles = Cookies.getJSON('allCircles');
+
+			for (var i = 0; i < allCircles.length; i++) {
+
+				$(".container").append(allCircles[i]);
+				//console.log(allCircles[i]);
+
+			}
+
+		}
+
+		$("body").click(function(){
+
+			$(".container").append(circle);
+
+			allCircles.push(circle);
+
+			Cookies.set('allCircles', allCircles, {expires : 10});
+
+		})
+
+
+
+
+		//Cookies.set('ourcircles', ["value1", "value2", "value3"], { expires : 10});
+
+		//console.log(Cookies.getJSON('ourcircles'));
+
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Cookie</title>
+
+	<style type="text/css">
+
+	/*	body,html{
+			width: 100vw;
+			height: 100vh;
+		}*/
+/*
+		.container{
+			width: 100vw;
+		}
+
+		.circle{
+        display: inline-block;
+        margin: 10px;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 3em;
+    }       
+*/
+
+	html,body{
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	}
+	.container{
+		width: 100vw;
+		height: 100vh;
+	}
+
+	div{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	font-size: 30px;
+	transform: rotate();
+	}
+
+
+	</style>
+
+	<!-- Load jquery -->
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+	<!-- Load the javascript cookie library -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+	<meta charset="utf-8">
+
+
+</head>
+<body>
+<div class='container'></div>
+	<script type="text/javascript">
+		
+		// var allCircles = [],
+		// 	circle = "<div class='circle'>👣</div>";
+
+		if (Cookies.getJSON('foot')){
+
+			console.log("there are cookies!");
+			foot = Cookies.getJSON('foot');
+
+			for (var i = 0; i < foot.length; i++) {
+				$(document.body).append(foot[i]);
+			}
+			var footsteps = Cookies.getJSON('foot');
+	       console.log(footsteps)
+
+		} else {
+			footsteps = [];
+		}
+
+		// $("body").click(function(){
+
+		// 	$(".container").append(circle);
+
+		// 	foot.push(circle);
+
+		// 	Cookies.set('foot', foot, {expires : 10});
+
+		// })
+
+		
+
+		
+	    var counter = 0
+		document.onmousemove = function(e){
+		// console.log(e["keys중에 하나 입력"])
+	    counter +=1
+		// var x = event["x"];
+		// var y = event["y"]; 는 밑에 랑 같음 (event.x/y)
+		var x = event.x;
+		var y = event.y;
+		// console.log (x, y);
+		var div = document.createElement("div");
+		$(div).text("👣")
+		div.style.left = x-25 + "px";
+		div.style.top = y-25 + "px";
+		//console.log("<div style='left:"+ (x -25) +"px;top:"+ (y-25) +"px;'>👣</div>")
+		
+
+		if(counter % 15 == 0){
+			document.body.appendChild(div);
+			footsteps.push("<div style='left:"+ (x -25) +"px;top:"+ (y-25) +"px;'>👣</div>")
+		
+			Cookies.set('foot', footsteps);
+		}
+		
+
+	}
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

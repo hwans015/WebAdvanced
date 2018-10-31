@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Cookie</title>
+
+	<style type="text/css">
+
+		.container{
+			width: 100vw;
+		}
+
+		.circle{
+        display: inline-block;
+        margin: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: red;
+    }       
+
+	</style>
+
+	<!-- Load jquery -->
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+	<!-- Load the javascript cookie library -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+
+</head>
+<body>
+
+	<div class="container"></div>
+
+	<script type="text/javascript">
+		
+		//create array
+		var allCircles =  [],
+    circle     =  '<div class="circle" />';
+
+    if(Cookies.getJSON('circles')){ // if the cookie already exists
+    
+    	// get the contents of the cookie and equate it to a variable:
+      var existingCircles = Cookies.getJSON('circles'); 
+
+      /* Now we want to iterate through our retrieved array and output each value */
+      for (var i = 0; i < existingCircles.length; i++) { // for loop that appends each circle to the DOM
+          $(".container").append(existingCircles[i]); 
+      }
+
+      // once the loop is done appending the circles, create a new circle:
+      existingCircles.push(circle);
+      Cookies.set('circles', existingCircles, {expires: 10});
+
+
+		}else{ // if the cookie doesn't already exist
+
+		    allCircles.push(circle); //push the first 'circle' the array allCircles
+		    Cookies.set('circles', allCircles, {expires: 10}); // set the cookie 'circles', define its value, and its expiration date
+		}
+
+	</script>
+</body>
+</html>

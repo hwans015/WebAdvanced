@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paper JS Boilerplate</title>
+	<style type="text/css">
+		
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		html, body{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100vh;
+		}
+
+		#paperjsCanvas{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100vh;
+		}
+
+	</style>
+
+	<script type="text/javascript" src="assets/paper-full.min.js"></script>
+
+	<script type="text/paperscript" canvas="paperjsCanvas" >
+		
+		//your "paperscript" goes below
+
+		var height = view.size.height;
+		var width = view.size.width;
+
+
+
+
+
+
+		var newLine = new Path();
+		newLine.strokeColor = 'red';
+		newLine.closed = true;
+		newLine.fillColor = "blue";
+
+		var lineArray = [1, 3];
+
+		newLine.add(new Point(100, 200));
+		newLine.add(new Point(100, 40));
+		newLine.add(new Point(150, 240));
+		newLine.add(new Point(width/2, height/2));
+
+
+
+		console.log(newLine.segments)
+
+		
+
+		var newCircle = new Path.Circle(new Point(300, 300), 50);
+
+		newCircle.strokeColor = "blue";
+		newCircle.fillColor = "yellow";
+		newCircle.opacity = 0.5;
+
+
+		var point = new Point(40, 40);
+		var size = new Size(70, 70);
+		var newRect = new Path.Rectangle(point, size);
+		newRect.fillColor = "green";
+
+		newCircle.position = new Point(400,400);
+
+
+		function onMouseMove(event){
+
+		var mousePosition = event.point.clone();
+
+		var x = mousePosition.x;
+		var y = mousePosition.y;
+
+		newLine.segments[0].point.x = x + 10;
+		newLine.segments[0].point.x = y + 20;
+
+		newLine.segments[2].point.x = x + 50;
+		newLine.segments[2].point.x = y + 100;
+
+		newCircle.position = new Point (x,y);
+	
+	}
+
+		function onMouseDown(event){
+
+		var mousePosition = event.point.clone();
+
+		var x = mousePosition.x;
+		var y = mousePosition.y;
+
+		newLine.add(new Point (x,y));
+
+		if(color){
+			newLine.fillColor = "transparent";
+			color = false;
+		}else{
+			newLine.fillColor = "red";
+			color = true;
+		}
+	}
+
+		function onResize(event){
+
+		height = view.size.height;
+		width = view.size.width;
+
+		for(var i =0, i < lineArray.length, i++){
+
+		newLine.segments[lineArray[i]].point.x = width/2;
+		newLine.segments[lineArray[i]].point.x = height/2;
+
+
+	}
+
+		
+
+
+	}
+
+	</script>
+
+</head>
+<body>
+
+	<canvas id="paperjsCanvas" resize="true"></canvas>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
