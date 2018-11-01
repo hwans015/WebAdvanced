@@ -53,27 +53,28 @@ $( document ).ready(function() {
 // $("body").click(function(){
 // 		})
 var counter = 0
+var starLife;
+var star;
 if (Cookies.getJSON('star')){
 
 			console.log("there are star!");
-			star = Cookies.getJSON('star');
 
-			for (var i = 0; i < star.length; i++) {
-				$(document.body).append(star[i]);
-			}
 			var stars = Cookies.getJSON('star');
+			var starLife = Cookies.getJSON('star');
 	        console.log(stars)
 
 		} else {
 			stars = [];
+			starLife = [];
 		}
-
+var img;
 function setup() {
   createCanvas(screen.width, screen.height);
+  img = loadImage("star.svg");
 };
 
 function draw() {
-	background(255,0);
+	// background(255,0);
 };
 
 function mouseMoved() {
@@ -89,7 +90,7 @@ function mouseMoved() {
 		var div = document.createElement("div");
 		var size = Math.floor(Math.random() * 10 + 10);
 		console.log(size)
-		$(div).append("<img src='star.svg' id='star' style='z-index: 1; width:" + size + "px;'></img>")
+		$(div).append("<img src='star.svg' id='star' style='z-index: 1; width:" + size + "px; opacity: " + + ";'></img>")
 		// $(div).css("width", size  + "px")
 		div.style.left = x-25 + "px";
 		div.style.top = y-25 + "px";
