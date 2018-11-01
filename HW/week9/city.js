@@ -62,7 +62,6 @@ if (Cookies.getJSON('star')){
 			stars = [];
 		}
 
-var Cookies2 = Cookies.noConflict();
 	
 	    var counter = 0
 		document.onmousemove = function(e){
@@ -73,8 +72,12 @@ var Cookies2 = Cookies.noConflict();
 		var x = event.x;
 		var y = event.y;
 		// console.log (x, y);
+
+		// var size = Math.floor(Math.random() * 30 + 5)
+
 		var div = document.createElement("div");
 		$(div).append("<img src='star.svg' id='star'></img>")
+		// $(div).css("width", size  + "px")
 		div.style.left = x-25 + "px";
 		div.style.top = y-25 + "px";
 		// div.style.width = Math.floor(Math.random() * 10 + 50) + "px";
@@ -85,7 +88,7 @@ var Cookies2 = Cookies.noConflict();
 			document.body.appendChild(div);
 			stars.push("<div style='left:"+ (x -25) +"px; top:"+ (y-25) +"px;'><img src='star.svg' id='star'></img></div>")
 		
-			Cookies2.set('star', stars);
+			Cookies.set('star', stars);
 		}
 		
 
