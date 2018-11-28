@@ -1,4 +1,4 @@
-var buildings = ['01.svg','02.svg','03.svg','04.svg','05.svg','06.svg','07.svg','08.svg']
+var buildings = ['01.svg','02.svg','03.svg','04.svg','05.svg','06.svg','07.svg','08.svg','09.svg','10.svg','11.svg','12.svg']
 var locations = []
 var widths = []
 var allBuildings = []
@@ -12,6 +12,8 @@ if(Cookies.getJSON('allBuildings')){ // check if there is a cookie named "allCir
 	widths = Cookies.getJSON('widths');
 	locations = Cookies.getJSON('locations'); // if there is a cookie named "allCircles", update existing array to reflect this
 	console.log(allBuildings);
+
+
 	for (var i = 0; i < allBuildings.length; i++) {
 		
 		var building = $("<img>")
@@ -21,24 +23,28 @@ if(Cookies.getJSON('allBuildings')){ // check if there is a cookie named "allCir
 		building.css("bottom", "0px")
 		building.css("z-index", "100")
 		building.css("left", locations[i] + "px")
-		$(".container").append(building); // add circle to DOM // cycle through (updated) array and populate the DOM with the circles
+		$(".container").append(building);
+		$("#number").text("The number of buildings in the city" + "\n" + ":" + " " + (allBuildings.length + 1) ); // add circle to DOM // cycle through (updated) array and populate the DOM with the circles
+		
 	}
 
 			
 
 }
+
+
 $( document ).ready(function() {
     var building = $("<img>")
 	var buildingId = Math.floor(Math.random() * 11)
 	allBuildings.push(buildingId);
 	building.attr('src', buildings[buildingId])
-	var width = Math.floor(Math.random() * 50 + 100)
+	var width = Math.floor(Math.random() * 40 + 100)
 	widths.push(width)
 	building.css("width", width  + "px")
 	building.css("position", "fixed")
 	building.css("bottom", "0px")
 	building.css("z-index", "100")
-	var loc = Math.floor(Math.random() * 1800)
+	var loc = Math.floor(Math.random() * 1500)
 	locations.push(loc)
 	building.css("left", loc + "px")
 	$(".container").append(building); // add circle to DOM
@@ -49,6 +55,10 @@ $( document ).ready(function() {
 	Cookies.set('locations', locations, {expires: 10}); // add array of circles to cookie
 
 });
+
+
+
+
 
 // $("body").click(function(){
 // 		})

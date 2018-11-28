@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js apis</title>
+
+	<style type="text/css">
+		.title{
+			color: red;
+
+		}
+
+		.images{
+			width: 60%;
+		}
+
+
+	</style>
+
+	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/jquery.query-yql.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+
+			// // $.queryYQL:
+			// 	// ny times
+			// var statement = "select * from feed where url='http://rss.nytimes.com/services/xml/rss/nyt/ArtandDesign.xml'"; // here you link the url you need
+
+
+	    // $.queryYQL(statement, "json", undefined, function (data) { //function taken from the query-yql library 
+	    // 	// console.log(data)
+	    // 	//console.log(data.query.results.item)
+
+	    // 	var nytArticles = data.query.results.item;
+
+	    // 	for (var i = 0; i < nytArticles.length; i++) {
+	    // 		console.log(nytArticles[i]);
+
+	    // 		$('#times').append(`
+	    // 			<h1 class="title"> ${nytArticles[i].title}</h1>
+	    // 			<h2> ${nytArticles[i].creator}</h2>
+	    // 			<p> ${nytArticles[i].description[0]}</p>
+	    // 			`)
+	    // 	} 
+	    // })
+
+
+			// $.queryYQL:
+				// craigslist
+			// var statement = "select * from feed where url='https://www.craigslist.org/about/best/all/index.rss'"; // here you link the url you need
+
+
+
+	  //   	$.queryYQL(statement, "json", undefined, function (data) { //function taken from the query-yql library 
+	  //   	// console.log(data)
+
+	  //   	//console.log(data.query.results.item)
+
+	  //   	var craigslist = data.query.results.item;
+
+	  //   	for (var i = 0; i < craigslist.length; i++) {
+	  //   		console.log(craigslist[i].description);
+
+	  //   		$('#craigs').append(`
+	  //   			<h1 class="title"> ${craigslist[i].title}</h1>
+	  //   			<h2> ${craigslist[i].creator}</h2>
+	  //   			<p> ${craigslist[i].description}</p>
+	  //   			`)
+	  //   	} 
+	  //   })
+
+
+
+	    //$.get requests:
+	    	// are.na
+	    $.get( "http://api.are.na/v2/channels/f18-web-advanced-potential", function( data ) {
+	      // console.log(data)
+
+	      var arenaContents = data.contents;
+
+	      for (var i = arenaContents.length -1; i>= 0; i--) {
+	    
+	      	
+	      	if(arenaContents[i].image){
+	      	$('#arena').append(`
+
+	      		<img class='images' src="${arenaContents[i].image.original.url}"></img>
+
+
+	      		`)
+	      	}else{
+	      		console.log(arenaContents[i])
+	      	}
+
+
+	      }
+
+
+	    });
+
+	    
+
+
+		})
+
+	</script>
+
+</head>
+<body>
+
+	<div id="craigs"></div>
+	<div id="times"></div>
+	<div id="arena"></div>
+	<div id="opeanweather"></div>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NY/SEOUL</title>
+
+	<style type="text/css">
+		
+	html,body{
+		margin: 0;
+		padding: 0;
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+	}
+	div{
+		width: 50%;
+		height: 100%;
+		float: left;
+	}
+
+	#ny{
+		background-color: blue;	
+	}
+
+	#nytime{
+		color: white;
+		font-family: monospace;
+		font-size: 5em;
+		width: 30vw;
+		height: 20%;
+	}
+
+	#nytem{
+		color: black;
+		font-size: 10em;
+		width: 30vw;
+		height: 20%;
+		font-family: futura;
+		z-index: 2;
+	}
+
+
+
+	#seoul{
+		background-color: yellow;
+	}
+
+	#setem{
+		color: black;
+		font-size: 10em;
+		width: 30vw;
+		height: 20%;
+		font-family: futura;
+		z-index: 2;
+	}
+
+
+	@media (max-width: 500px){
+		div{
+			width: 100%;
+			height: 50%;
+		}
+
+
+
+	</style>
+
+	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
+
+	<script type="text/javascript">
+
+	// 	function calcTime(city, offset) {
+	//     // create Date object for current location
+	//     var d = new Date();
+
+	//     // convert to msec
+	//     // subtract local time zone offset
+	//     // get UTC time in msec
+	//     var utc = d.getTime() - (d.getTimezoneOffset() * 60000);
+
+	//     // create new Date object for different city
+	//     // using supplied offset
+	//     var nd = new Date(utc + (3600000*offset));
+
+	//     // return time as a string
+	//     // return nd.toLocaleString();
+	//     return nd.toLocaleString();
+
+	// }
+
+	// 	document.write(calcTime('Seoul', '+19'));
+
+
+
+		$(document).ready(function(){
+
+		 $.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=America/New_York", function( data ) {
+
+		 	var nytime = data;
+
+		 	console.log(data);
+
+		 	$("#nytime").text(nytime);
+
+		 })
+			
+	    //$.get requests:
+	    //openweather map
+	    
+	    $.get( "http://api.openweathermap.org/data/2.5/weather?id=5128638&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
+	      //$( "#openweather" ).html( data );
+	     	//console.log(data)
+
+	     	var nytemper = data.main.temp;
+
+	     	console.log(nytemper)
+
+	     	if(nytemper > 1){
+	     		$("#ny").css({"background-color" : "red"});
+	     		$("#nytem").text(nytemper + "°" + "c");
+
+	     	}else if(nytemper < 1){
+	     		$("#ny").css({"background-color" : "green"});
+	     		$("#nytem").text(nytemper + "°" + "c");
+	     	}
+
+	    });
+		})
+
+		//seoul=?id=1835848
+	    $.get( "http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
+	      //$( "#openweather" ).html( data );
+	     	//console.log(data)
+
+	     	var setemper = data.main.temp;
+
+	     	console.log(setemper)
+
+	     	if(setemper > 1){
+	     		$("#seoul").css({"background-color" : "red"});
+	     		$("#setem").text(setemper + "°" + "c");
+
+	     	}else if(setemper < 1){
+	     		$("#seoul").css({"background-color" : "green"});
+	     		$("#setem").text(setemper + "°" + "c");
+	     	}
+
+	    });
+
+
+</script>
+</head>
+<body>
+	<div id="ny">
+		<h1 id="nytime"></h1>
+		<p id="nytem"></p>
+
+	</div>
+	<div id="seoul">
+	
+		<p id="setem"></p>
+	</div>
+
+
+
+</body>
+</html>
