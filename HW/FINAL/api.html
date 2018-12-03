@@ -37,12 +37,36 @@
 		height: 20%;
 		font-family: futura;
 		z-index: 2;
+		margin: 0;
+	}
+
+	#nyweather{
+		color: white;
+		font-size: 3em;
+		width: 50vw;
+		height: 20%;
+		z-index: 3;
+	}
+	#nyhum{
+		color: white;
+		font-size: 3em;
+		width: 50vw;
+		height: 20%;
+		z-index: 4;
 	}
 
 
 
 	#seoul{
 		background-color: yellow;
+	}
+
+	#setime{
+		color: white;
+		font-family: monospace;
+		font-size: 5em;
+		width: 30vw;
+		height: 20%;
 	}
 
 	#setem{
@@ -52,6 +76,23 @@
 		height: 20%;
 		font-family: futura;
 		z-index: 2;
+		margin: 0;
+	}
+
+	#seweather{
+		color: white;
+		font-size: 3em;
+		width: 50vw;
+		height: 20%;
+		z-index: 3;
+	}
+
+	#sehum{
+		color: white;
+		font-size: 3em;
+		width: 50vw;
+		height: 20%;
+		z-index: 4;
 	}
 
 
@@ -96,11 +137,41 @@
 
 		 $.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=America/New_York", function( data ) {
 
-		 	var nytime = data;
+		 	var nytime = JSON.parse(data);
 
-		 	console.log(data);
+		 	var nym = nytime.month;
+		 	var nyd = nytime.day;
+		 	var nyy = nytime.year;
 
-		 	$("#nytime").text(nytime);
+		 	var nyh = nytime.hours;
+		 	var nyb = nytime.minutes;
+		 	var nys = nytime.seconds;
+
+
+		 	console.log(nytime.fulldate);
+
+		 	// javascript split(" ")
+
+		 	$("#nytime").text(nym + "-" + nyd + "-" + nyy + "\n" + nyh + ":" + nyb + ":" + nys);
+
+		 })
+
+		 $.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=Asia/Seoul", function( data ) {
+
+		 	var setime = JSON.parse(data);
+
+		 	console.log(setime);
+
+
+		 	var sem = setime.month;
+		 	var sed = setime.day;
+		 	var sey = setime.year;
+
+		 	var seh = setime.hours;
+		 	var seb = setime.minutes;
+		 	var ses = setime.seconds;
+
+		 	$("#setime").text(sem + "-" + sed + "-" + sey + "\n" + seh + ":" + seb + ":" + ses);
 
 		 })
 			
@@ -111,10 +182,17 @@
 	      //$( "#openweather" ).html( data );
 	     	//console.log(data)
 
+	     	
+
+	     	var nymain = data.weather[0].main;
+	     	// console.log(nymain)
+	     	$("#nyweather").text(nymain);
+
+	     	var nyhum = data.main.humidity;
+	     	$("#nyhum").text(nyhum + "%");
+
 	     	var nytemper = data.main.temp;
-
-	     	console.log(nytemper)
-
+	     	// console.log(nytemper)
 	     	if(nytemper > 1){
 	     		$("#ny").css({"background-color" : "red"});
 	     		$("#nytem").text(nytemper + "°" + "c");
@@ -132,15 +210,20 @@
 	      //$( "#openweather" ).html( data );
 	     	//console.log(data)
 
+	     	var sehum = data.main.humidity;
+	     	$("#sehum").text(sehum + "%");
+
+	     	var semain = data.weather[0].main;
+	     	// console.log(semain)
+	     	$("#seweather").text(semain);
+
+	     	// console.log(setemper)
 	     	var setemper = data.main.temp;
-
-	     	console.log(setemper)
-
-	     	if(setemper > 1){
+	     	if(setemper < 1){
 	     		$("#seoul").css({"background-color" : "red"});
 	     		$("#setem").text(setemper + "°" + "c");
 
-	     	}else if(setemper < 1){
+	     	}else if(setemper > 1){
 	     		$("#seoul").css({"background-color" : "green"});
 	     		$("#setem").text(setemper + "°" + "c");
 	     	}
@@ -149,16 +232,103 @@
 
 
 </script>
+
+
 </head>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+	$(document).ready(function(){
+   
+  //function to display time in current time zone (PST) 
+  function timeDisplay() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+    var meridiem = " ";
+   
+    if(hours >= 12){
+      hours = hours - 12;
+      meridiem = "pm";
+    }
+    else{
+      meridiem = "am";
+    }
+    if(hours === 0){
+      hours = 12;
+    }
+    if(hours < 10){
+        hours = "0" + hours;
+      }
+    if(minutes < 10){
+      minutes = "0" + minutes;
+    }
+    if(seconds < 10){
+      seconds = "0" + seconds;
+    }
+    
+    var clockDiv = document.getElementById('nytime');
+    clockDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+  }
+  
+  timeDisplay(+3);
+  setInterval(timeDisplay, 1000, +3);
+  
+
+  
+  //function to display time in (EST) New York 
+  function newYorkTimeDisplay(offset) {
+    var currentTime = new Date();  
+    currentTime.setHours(currentTime.getHours()+offset); 
+        
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+    var meridiem = " ";
+   
+    if(hours >= 12){
+      hours = hours - 12;
+      meridiem = "pm";
+    }
+    else{
+      meridiem = "am";
+    }
+    if(hours === 0){
+      hours = 12;
+    }
+    if(hours < 10){
+        hours = "0" + hours;
+      }
+    if(minutes < 10){
+      minutes = "0" + minutes;
+    }
+    if(seconds < 10){
+      seconds = "0" + seconds;
+    }
+    
+    var newYorkDiv = document.getElementById('setime');      
+    newYorkDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem; 
+  }
+     
+  newYorkTimeDisplay(+9);
+  setInterval(newYorkTimeDisplay, 1000, +9); 
+  
+}); 
+
+</script> -->
 <body>
 	<div id="ny">
 		<h1 id="nytime"></h1>
 		<p id="nytem"></p>
+		<p id="nyweather"></p>
+		<p id="nyhum"></p>
 
 	</div>
 	<div id="seoul">
-	
+		<h1 id="setime"></h1>
 		<p id="setem"></p>
+		<p id="seweather"></p>
+		<p id="sehum"></p>
 	</div>
 
 
