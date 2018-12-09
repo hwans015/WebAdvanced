@@ -12,14 +12,37 @@
 		height: 100vh;
 		overflow: hidden;
 	}
+
 	div{
 		width: 50%;
 		height: 100%;
 		float: left;
 	}
 
+
 	#ny{
-		background-color: blue;	
+		background-size: cover;
+		position: relative;
+	}
+
+	#newyork_img{
+		position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    width: 80%;
+	    height: 43%;
+	    margin: auto;
+	}
+
+	#newyork_img img{
+		position: relative;
+		width: 100%;
+		height: auto;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	#nytime{
@@ -28,37 +51,65 @@
 		font-size: 5em;
 		width: 30vw;
 		height: 20%;
+		display: none;
 	}
 
 	#nytem{
-		color: black;
-		font-size: 10em;
+		color: white;
+		font-size: 8em;
 		width: 30vw;
 		height: 20%;
-		font-family: futura;
-		z-index: 2;
+		font-family: monospace;
+		z-index: 4;
 		margin: 0;
+		display: none;
 	}
 
 	#nyweather{
 		color: white;
 		font-size: 3em;
+		font-family: monospace;
 		width: 50vw;
 		height: 20%;
 		z-index: 3;
+		display: none;
 	}
 	#nyhum{
 		color: white;
 		font-size: 3em;
+		font-family: monospace;
 		width: 50vw;
 		height: 20%;
 		z-index: 4;
+		display: none;
 	}
 
 
 
 	#seoul{
-		background-color: yellow;
+		background-size: cover;
+		position: relative;
+	}
+
+	#seoul_img{
+		position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    width: 50%;
+	    height: 47%;
+	    margin: auto;
+
+	}
+
+	#seoul_img img{
+		position: relative;
+		width: 100%;
+		height: auto;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	#setime{
@@ -67,16 +118,18 @@
 		font-size: 5em;
 		width: 30vw;
 		height: 20%;
+		display: none;
 	}
 
 	#setem{
-		color: black;
-		font-size: 10em;
+		font-size: 8em;
 		width: 30vw;
 		height: 20%;
-		font-family: futura;
+		font-family: monospace;
 		z-index: 2;
 		margin: 0;
+		display: none;
+		color: white;
 	}
 
 	#seweather{
@@ -85,6 +138,8 @@
 		width: 50vw;
 		height: 20%;
 		z-index: 3;
+		font-family: monospace;
+		display: none;
 	}
 
 	#sehum{
@@ -93,10 +148,12 @@
 		width: 50vw;
 		height: 20%;
 		z-index: 4;
+		font-family: monospace;
+		display: none;
 	}
 
 
-	@media (max-width: 500px){
+	@media (max-width: 800px){
 		div{
 			width: 100%;
 			height: 50%;
@@ -107,228 +164,262 @@
 	</style>
 
 	<script type="text/javascript" src="assets/jquery-3.3.1.min.js"></script>
-
 	<script type="text/javascript">
 
-	// 	function calcTime(city, offset) {
-	//     // create Date object for current location
-	//     var d = new Date();
+	var countn = 0;
 
-	//     // convert to msec
-	//     // subtract local time zone offset
-	//     // get UTC time in msec
-	//     var utc = d.getTime() - (d.getTimezoneOffset() * 60000);
-
-	//     // create new Date object for different city
-	//     // using supplied offset
-	//     var nd = new Date(utc + (3600000*offset));
-
-	//     // return time as a string
-	//     // return nd.toLocaleString();
-	//     return nd.toLocaleString();
-
-	// }
-
-	// 	document.write(calcTime('Seoul', '+19'));
+	var counts = 0;
 
 
-
-		$(document).ready(function(){
-
-		 $.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=America/New_York", function( data ) {
-
-		 	var nytime = JSON.parse(data);
-
-		 	var nym = nytime.month;
-		 	var nyd = nytime.day;
-		 	var nyy = nytime.year;
-
-		 	var nyh = nytime.hours;
-		 	var nyb = nytime.minutes;
-		 	var nys = nytime.seconds;
+	
+	$(document).ready(function(){
 
 
-		 	console.log(nytime.fulldate);
+		function clock(){
 
-		 	// javascript split(" ")
+			$.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=America/New_York", function( data ) {
 
-		 	$("#nytime").text(nym + "-" + nyd + "-" + nyy + "\n" + nyh + ":" + nyb + ":" + nys);
+			 	var nytime = JSON.parse(data);
 
-		 })
+			 	var nym = nytime.month;
+			 	var nyd = nytime.day;
+			 	var nyy = nytime.year;
 
-		 $.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=Asia/Seoul", function( data ) {
-
-		 	var setime = JSON.parse(data);
-
-		 	console.log(setime);
+			 	var nyh = nytime.hours;
+			 	var nyb = nytime.minutes;
+			 	var nys = nytime.seconds;
 
 
-		 	var sem = setime.month;
-		 	var sed = setime.day;
-		 	var sey = setime.year;
+			 	if (nyh >= 5 && nyh < 16){
+			 		$("#ny").css("background-image", "url(mor.png)");
+			 	}else if (nyh >= 16 && nyh < 19){
+			 		$("#ny").css("background-image", "url(noon.png)");
+			 	}else{
+			 		$("#ny").css("background-image", "url(night.png)");
+			 	}
 
-		 	var seh = setime.hours;
-		 	var seb = setime.minutes;
-		 	var ses = setime.seconds;
+			 	var hours = nyh.toString();
+			 	if(hours.length == 1){
+			 		hours = "0" + hours;
+			 	}
+			 	var months = nym.toString();
+			 	if(months.length == 1){
+			 		months = "0" + months;
+			 	}
+			 	var days = nyd.toString();
+			 	if(days.length == 1){
+			 		days = "0" + days;
+			 	}
+			 	var minutes = nyb.toString();
+			 	if(minutes.length == 1){
+			 		minutes = "0" + minutes;
+			 	}
+			 	var seconds = nys.toString();
+			 	if(seconds.length == 1){
+			 		seconds = "0" + seconds;
+			 	}
 
-		 	$("#setime").text(sem + "-" + sed + "-" + sey + "\n" + seh + ":" + seb + ":" + ses);
+			 	$("#nytime").text(months + "-" + days + "-" + nyy + "\n" + hours + ":" + minutes + ":" + seconds);
+			 })
 
-		 })
-			
-	    //$.get requests:
-	    //openweather map
+			$.get( "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=Asia/Seoul", function( data ) {
+
+			 	var setime = JSON.parse(data);
+
+			 	var sem = setime.month;
+			 	var sed = setime.day;
+			 	var sey = setime.year;
+
+			 	var seh = setime.hours;
+			 	var seb = setime.minutes;
+			 	var ses = setime.seconds;
+
+			 	if (seh >= 5 && seh < 16){ // (seh >= 5 && seh < 16)
+			 		$("#seoul").css("background-image", "url(mor.png)");
+			 	}else if (seh >= 16 && seh < 19){ // (seh >= 16 && seh < 21)
+			 		$("#seoul").css("background-image", "url(noon.png)");
+			 	}else{
+			 		$("#seoul").css("background-image", "url(night.png)");
+			 	}
+
+			 	var hours = seh.toString();
+			 	if(hours.length == 1){
+			 		hours = "0" + hours;
+			 	}
+			 	var months = sem.toString();
+			 	if(months.length == 1){
+			 		months = "0" + months;
+			 	}
+			 	var days = sed.toString();
+			 	if(days.length == 1){
+			 		days = "0" + days;
+			 	}
+			 	var minutes = seb.toString();
+			 	if(minutes.length == 1){
+			 		minutes = "0" + minutes;
+			 	}
+			 	var seconds = ses.toString();
+			 	if(seconds.length == 1){
+			 		seconds = "0" + seconds;
+			 	}
+
+			 	$("#setime").text(months + "-" + days + "-" + sey + "\n" + hours + ":" + minutes + ":" + seconds);
+			 })
+
+		 }setInterval(clock, 1000);
+
 	    
 	    $.get( "http://api.openweathermap.org/data/2.5/weather?id=5128638&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
-	      //$( "#openweather" ).html( data );
-	     	//console.log(data)
-
-	     	
 
 	     	var nymain = data.weather[0].main;
-	     	// console.log(nymain)
 	     	$("#nyweather").text(nymain);
 
 	     	var nyhum = data.main.humidity;
 	     	$("#nyhum").text(nyhum + "%");
 
 	     	var nytemper = data.main.temp;
-	     	// console.log(nytemper)
-	     	if(nytemper > 1){
-	     		$("#ny").css({"background-color" : "red"});
-	     		$("#nytem").text(nytemper + "°" + "c");
-
-	     	}else if(nytemper < 1){
-	     		$("#ny").css({"background-color" : "green"});
-	     		$("#nytem").text(nytemper + "°" + "c");
-	     	}
+	     	$("#nytem").text(nytemper + "°" + "c");
 
 	    });
-		})
+		
 
-		//seoul=?id=1835848
 	    $.get( "http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
-	      //$( "#openweather" ).html( data );
-	     	//console.log(data)
-
+	 
 	     	var sehum = data.main.humidity;
 	     	$("#sehum").text(sehum + "%");
 
 	     	var semain = data.weather[0].main;
-	     	// console.log(semain)
 	     	$("#seweather").text(semain);
 
-	     	// console.log(setemper)
 	     	var setemper = data.main.temp;
-	     	if(setemper < 1){
-	     		$("#seoul").css({"background-color" : "red"});
-	     		$("#setem").text(setemper + "°" + "c");
-
-	     	}else if(setemper > 1){
-	     		$("#seoul").css({"background-color" : "green"});
-	     		$("#setem").text(setemper + "°" + "c");
-	     	}
+	     	$("#setem").text(setemper + "°" + "c");
 
 	    });
 
+	    $("#newyork_img").click(function(){
+	    	countn++;
+	    	shown();
+	    });
+
+	     $("#seoul_img").click(function(){
+	     	counts++;
+	    	shows();
+	    });
+
+	    function shown(){
+	    	if (countn == 1){
+	    		$('#nytem').show();
+	    	}
+	    	else if (countn ==2){
+	    		$('#nytime').show();
+	    	}
+	    	else if (countn ==3){
+	    		$('#nyweather').show();
+	    	}
+	    	else if (countn ==4){
+	    		$('#nyhum').show();
+	    	}
+	    	else{
+	    		 
+	    		$.get( "http://api.openweathermap.org/data/2.5/weather?id=5128638&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
+
+	    		var nymain = data.weather[0].main;
+	    		// console.log(nymain);
+		    		if (nymain == 'Clear') {
+		    			$('#ny').css( 'cursor', "url('emo.png'), auto");
+		    		}
+		    		else if (nymain == 'Clouds') {
+		    			$('#ny').css( 'cursor', 'pointer');
+		    		}
+		    		else if (nymain == 'Rain') {
+		    			$('#ny').css( 'cursor', 'pointer');
+		    		}
+		    		else if (nymain == 'Thunderstorm') {
+		    			$('#ny').css( 'cursor', 'pointer');
+		    		}
+		    		else if (nymain == 'Snow') {
+		    			$('#ny').css( 'cursor', 'help');
+		    		}
+		    		else if (nymain == 'Drizzle') {
+		    			$('#ny').css( 'cursor', 'pointer');
+		    		}
+	    		});
+	    	}
+	    }
+
+	    function shows(){
+	    	if (counts == 1){
+	    		$('#setem').show();
+	    	}
+	    	else if (counts == 2){
+	    		$('#setime').show();
+	    	}
+	    	else if (counts == 3){
+	    		$('#seweather').show();
+	    	}
+	    	else if (counts == 4){
+	    		$('#sehum').show();
+	    	}
+	    	else{
+	    		 
+	    		$.get( "http://api.openweathermap.org/data/2.5/weather?id=1835848&units=metric&APPID=0a24bdf7d0b9bd0eedceecb124bc2278", function( data ) {
+
+	    		var semain = data.weather[0].main;
+	    		// console.log(nymain);
+		    		if (semain == 'Clear') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+		    		else if (semain == 'Clouds') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+		    		else if (semain == 'Rain') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+		    		else if (semain == 'Thunderstorm') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+		    		else if (semain == 'Snow') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+		    		else if (semain == 'Drizzle') {
+		    			$('#seoul').css( 'cursor', 'pointer');
+		    		}
+
+	    		});
+	    	}
+	    }
+
+	    // var element = new Array();
+
+	    // element[0] = document.getElementsById('nytime');
+	    // element[1] = document.getElementsById('nytemper');
+	    // element[2] = document.getElementsById('nyweather');
+	    // element[3] = `document.getElementsById('nyhum');
+
+
+
+	});
+
 
 </script>
-
-
 </head>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-	$(document).ready(function(){
-   
-  //function to display time in current time zone (PST) 
-  function timeDisplay() {
-    var currentTime = new Date();
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var meridiem = " ";
-   
-    if(hours >= 12){
-      hours = hours - 12;
-      meridiem = "pm";
-    }
-    else{
-      meridiem = "am";
-    }
-    if(hours === 0){
-      hours = 12;
-    }
-    if(hours < 10){
-        hours = "0" + hours;
-      }
-    if(minutes < 10){
-      minutes = "0" + minutes;
-    }
-    if(seconds < 10){
-      seconds = "0" + seconds;
-    }
-    
-    var clockDiv = document.getElementById('nytime');
-    clockDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem;
-  }
-  
-  timeDisplay(+3);
-  setInterval(timeDisplay, 1000, +3);
-  
 
-  
-  //function to display time in (EST) New York 
-  function newYorkTimeDisplay(offset) {
-    var currentTime = new Date();  
-    currentTime.setHours(currentTime.getHours()+offset); 
-        
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var meridiem = " ";
-   
-    if(hours >= 12){
-      hours = hours - 12;
-      meridiem = "pm";
-    }
-    else{
-      meridiem = "am";
-    }
-    if(hours === 0){
-      hours = 12;
-    }
-    if(hours < 10){
-        hours = "0" + hours;
-      }
-    if(minutes < 10){
-      minutes = "0" + minutes;
-    }
-    if(seconds < 10){
-      seconds = "0" + seconds;
-    }
-    
-    var newYorkDiv = document.getElementById('setime');      
-    newYorkDiv.innerText = hours + ":" + minutes + ":" + seconds + " " + meridiem; 
-  }
-     
-  newYorkTimeDisplay(+9);
-  setInterval(newYorkTimeDisplay, 1000, +9); 
-  
-}); 
-
-</script> -->
 <body>
 	<div id="ny">
-		<h1 id="nytime"></h1>
-		<p id="nytem"></p>
-		<p id="nyweather"></p>
-		<p id="nyhum"></p>
-
+		<div id="nytime"></div>
+		<div id="newyork_img"><img src="자산 3.png"></div>
+		<div id="nytem"></div>
+		<div id="nyweather"></div>
+		<div id="nyhum"></div>
 	</div>
+
 	<div id="seoul">
-		<h1 id="setime"></h1>
-		<p id="setem"></p>
-		<p id="seweather"></p>
-		<p id="sehum"></p>
+		<div id="setime"></div>
+		<div id="seoul_img"><img src="자산 2.png"></div>
+		<div id="setem"></div>
+		<div id="seweather"></div>
+		<div id="sehum"></div>
 	</div>
 
 
